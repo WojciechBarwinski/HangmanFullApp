@@ -6,8 +6,8 @@ import java.util.Scanner;
 public class HangmanApp {
 
     private List<String> wordsList;
-    private Player player;
     private final int STEPS = 10;
+    private Player player;
 
     public HangmanApp() {
         this.wordsList = new ArrayList<>();
@@ -17,31 +17,21 @@ public class HangmanApp {
     }
 
 
-    void gameStart(){
-        player = new Player();
-        player.setWordToGuess(getRandomWord());
-
-        System.out.println(player.getWordToGuess());
-
+    void gameStart(Player player){
+        this.player = player;
         while (player.getStepCounter() < STEPS){
             String letterFromPlayer = getLetterFromPlayer();
             if (player.getWordToGuess().contains(letterFromPlayer)){
-                correctAnswer(letterFromPlayer);
+                player.setCorrectAnswer(letterFromPlayer);
             }
             else {
-                wrongAnswer(letterFromPlayer);
+                player.setWrongAnswer(letterFromPlayer);
             }
-            player.addCounter();
-            System.out.println("to był ruch: " + player.getStepCounter());
         }
-        System.out.println("To na razie koniec");
-    }
-    String getRandomWord(){
-        Random random = new Random();
-        return this.wordsList.get(random.nextInt(this.wordsList.size()));
     }
 
-    String getLetterFromPlayer() {
+
+    private String getLetterFromPlayer() {
         System.out.println("podaj jakas litere: ");
         Scanner scanner = new Scanner(System.in);
         String playerInput;
@@ -59,14 +49,5 @@ public class HangmanApp {
             return playerInput;
     }
 
-    void wrongAnswer(String wrongLetter){
-        System.out.println("Litery nie ma w słowie - nie Trafiłes");
-        player.setWrongAnswer(wrongLetter);
-    }
-
-    void correctAnswer(String correctLetter){
-        System.out.println("litera jest w słowie - Trafiles!");
-        player.setCorrectAnswer(correctLetter);
-    }
 
 }

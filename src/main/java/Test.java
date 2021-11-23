@@ -7,7 +7,7 @@ public class Test {
         System.out.println("Hello World");
 
         HangmanApp hangmanApp = new HangmanApp();
-
-        hangmanApp.gameStart();
+        Player player = new Player();
+        hangmanApp.gameStart(player);
     }
 }

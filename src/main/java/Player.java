@@ -1,16 +1,18 @@
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class Player {
 
     private String wordToGuess;
-    private List<String> wrongAnswer;
-    private List<String> correctAnswer;
-    private int stepCounter;
+    private Set<String> wrongAnswer;
+    private Set<String> correctAnswer;
+
 
     public Player() {
-        wrongAnswer = new ArrayList<>();
-        correctAnswer = new ArrayList<>();
+        wrongAnswer = new HashSet<>();
+        correctAnswer = new HashSet<>();
     }
 
     public String getWordToGuess() {
@@ -21,7 +23,7 @@ public class Player {
         this.wordToGuess = wordToGuess;
     }
 
-    public List<String> getWrongAnswer() {
+    public Set<String> getWrongAnswer() {
         return wrongAnswer;
     }
 
@@ -29,7 +31,7 @@ public class Player {
         this.wrongAnswer.add(wrongAnswer);
     }
 
-    public List<String> getCorrectAnswer() {
+    public Set<String> getCorrectAnswer() {
         return correctAnswer;
     }
 
@@ -38,10 +40,8 @@ public class Player {
     }
 
     public int getStepCounter() {
-        return stepCounter;
+        return wrongAnswer.size() + correctAnswer.size();
     }
 
-    public void addCounter(){
-        this.stepCounter++;
-    }
+
 }
